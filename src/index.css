@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Portfolio Design System with Glassmorphism & Gradients 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Rich premium dark theme base colors */
+    --background: 220 27% 6%;
+    --foreground: 210 20% 95%;
+
+    /* Premium dark glass card colors */
+    --card: 220 27% 8% / 0.85;
+    --card-foreground: 210 20% 95%;
+    --card-border: 220 13% 20% / 0.4;
+
+    /* Elegant accent colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 20% 95%;
+    --primary-glow: 217 91% 70%;
+
+    --secondary: 27 96% 61%;
+    --secondary-foreground: 220 27% 6%;
+    --secondary-glow: 27 96% 71%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 210 20% 95%;
+    --accent-glow: 142 76% 46%;
+
+    /* UI element colors */
+    --muted: 220 27% 12%;
+    --muted-foreground: 215 20% 70%;
+
+    --popover: 220 27% 8% / 0.95;
+    --popover-foreground: 210 20% 95%;
+
+    --border: 220 13% 20% / 0.5;
+    --input: 220 27% 12% / 0.8;
+    --ring: 217 91% 60%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 95%;
+
+    /* Sophisticated gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(27, 96%, 61%) 50%, hsl(142, 76%, 36%) 100%);
+    --gradient-secondary: linear-gradient(45deg, hsl(27, 96%, 61%) 0%, hsl(217, 91%, 60%) 50%, hsl(142, 76%, 36%) 100%);
+    --gradient-radial: radial-gradient(circle at 50% 50%, hsl(217, 91%, 60%) 0%, hsl(220, 27%, 8%) 70%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(217, 91%, 60%) 0px, transparent 50%), 
+                     radial-gradient(at 80% 0%, hsl(27, 96%, 61%) 0px, transparent 50%), 
+                     radial-gradient(at 0% 50%, hsl(142, 76%, 36%) 0px, transparent 50%), 
+                     radial-gradient(at 80% 50%, hsl(217, 91%, 60%) 0px, transparent 50%),
+                     radial-gradient(at 0% 100%, hsl(27, 96%, 61%) 0px, transparent 50%), 
+                     radial-gradient(at 80% 100%, hsl(142, 76%, 36%) 0px, transparent 50%),
+                     linear-gradient(135deg, hsl(220, 27%, 6%) 0%, hsl(220, 27%, 8%) 100%);
+
+    /* Premium glass effects */
+    --glass-bg: hsl(220, 27%, 8%) / 0.25;
+    --glass-border: hsl(220, 13%, 20%) / 0.4;
+    --glass-shadow: 0 8px 32px 0 hsl(217, 91%, 60%) / 0.15;
+    --glass-blur: blur(12px);
+
+    /* Refined shadows */
+    --shadow-neo: 0 8px 32px 0 hsl(217, 91%, 60%) / 0.15, 
+                  0 4px 16px 0 hsl(27, 96%, 61%) / 0.1,
+                  inset 0 1px 0 0 hsl(220, 13%, 20%) / 0.4;
+    --shadow-glow: 0 0 30px hsl(217, 91%, 60%) / 0.3, 
+                   0 0 60px hsl(27, 96%, 61%) / 0.2;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-mesh);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Premium glassmorphism card styles */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/[0.05] border border-primary/15 rounded-xl;
+    box-shadow: var(--shadow-neo);
+    background: linear-gradient(135deg, hsl(217, 91%, 60%) / 0.08, hsl(27, 96%, 61%) / 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500 hover:bg-white/[0.08] hover:border-primary/25;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-8px) rotateX(4deg) scale(1.01);
+    box-shadow: var(--shadow-glow);
+    background: linear-gradient(135deg, hsl(217, 91%, 60%) / 0.12, hsl(27, 96%, 61%) / 0.08);
+  }
+
+  /* Premium button styles */
+  .btn-hero {
+    @apply relative px-8 py-4 rounded-xl font-semibold text-foreground overflow-hidden;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-neo);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-hero::before {
+    @apply absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300;
+    content: '';
+    background: var(--gradient-secondary);
+  }
+
+  .btn-hero:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Skill bars */
+  .skill-bar {
+    @apply relative h-3 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .skill-progress {
+    @apply h-full rounded-full relative overflow-hidden;
+    background: var(--gradient-primary);
+    box-shadow: 0 0 20px hsl(var(--primary-glow)) / 0.5;
+  }
+
+  .skill-progress::after {
+    @apply absolute inset-0;
+    content: '';
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  /* Floating animation */
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  .floating-delayed {
+    animation: floating 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(var(--primary-glow)) / 0.8;
+  }
+}
+
+/* Keyframe animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: var(--shadow-neo);
+  }
+  50% {
+    box-shadow: var(--shadow-glow);
+  }
+}
